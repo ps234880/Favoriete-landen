@@ -1,0 +1,99 @@
+﻿<Window x:Class="favoriete_landen.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:favoriete_landen"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" Background="AntiqueWhite">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/chinese_wall.jpg" Opacity="0.3"/>
+        </Grid.Background>
+
+        <Grid Margin="15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.RowSpan="2">
+                <ListView ItemsSource="{Binding Customers}" SelectedItem="{Binding SelectedCustomer}" d:ItemsSource="{d:SampleData ItemCount=20}" Margin="0, 0, 5, 95">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Width="auto" Margin="5">
+                                <DockPanel>
+                                    <TextBlock Text="Name:" Margin="2"/>
+                                    <TextBlock Text="{Binding CustomerName}" Margin="2"/>
+                                </DockPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Grid Margin="0, 0, 0, 60" VerticalAlignment="Bottom">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Click="CreateCustomer" Height="20" Margin="0, 15, 5, 0">Create customer</Button>
+                    <Button Grid.Column="1" Height="20" Margin="5, 15, 5, 0" Click="DeleteCustomer" DataContext="{Binding SelectedCustomer}">Delete</Button>
+                </Grid>
+
+                <StackPanel Height="auto" Margin="0, 0, 5, 0" VerticalAlignment="Bottom">
+                    <TextBlock FontSize="25" Margin="0, 0, 0, 5">Customer</TextBlock>
+                    <TextBlock DataContext="{Binding SelectedCustomer}" Text="{Binding CustomerName}" Height="20" Background="White"></TextBlock>
+                </StackPanel>
+            </Grid>
+
+            <ListView Grid.Column="1" Grid.Row="0" ItemsSource="{Binding Countries}" SelectedItem="{Binding SelectedCountry}" d:ItemsSource="{d:SampleData ItemCount=20}" Margin="5, 0, 0, 0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Width="auto" Margin="5">
+                            <DockPanel>
+                                <TextBlock Text="Country:" Margin="2"/>
+                                <TextBlock Text="{Binding CountryName}" Margin="2"/>
+                            </DockPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Grid Grid.Row="1" Grid.Column="1" Margin="5, 0, 0, 0">
+                <TextBlock FontSize="25">Favourites</TextBlock>
+
+                <ListView Margin="0, 40, 0, 35" ItemsSource="{Binding FavouriteCountries}" SelectedItem="{Binding SelectedFavouriteCountry}" d:ItemsSource="{d:SampleData ItemCount=7}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Width="auto" Margin="5">
+                                <DockPanel>
+                                    <TextBlock Text="Favourite country:" Margin="2"/>
+                                    <TextBlock Text="{Binding CountryName}" Margin="2"/>
+                                </DockPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <StackPanel VerticalAlignment="Bottom">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Height="20" Margin="0, 15, 5, 0" Click="AddFavouriteCountry">Add</Button>
+                        <Button DataContext="{Binding SelectedCountry}" Grid.Column="1" Height="20" Margin="5, 15, 0, 0" Click="RemoveFavouriteCountry">Remove</Button>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</Window>

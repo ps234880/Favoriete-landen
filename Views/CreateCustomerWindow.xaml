@@ -1,0 +1,42 @@
+﻿<Window x:Class="favoriete_landen.Views.CreateCustomerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:favoriete_landen.Views"
+        mc:Ignorable="d"
+        Title="CreateCustomerWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" Background="AntiqueWhite">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/chinese_wall.jpg" Opacity="0.3"/>
+        </Grid.Background>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="6*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1" Background="White">
+                    <StackPanel Margin="15, 15, 15, 0">
+                        <TextBlock HorizontalAlignment="Center" FontSize="25">Create customer</TextBlock>
+                        <Separator Margin="0, 5, 0, 0"></Separator>
+
+                        <TextBlock FontSize="15" Margin="0, 10, 0, 5">Customer name</TextBlock>
+                        <TextBox DataContext="{Binding NewCustomer}" Text="{Binding CustomerName}" FontSize="15" Height="30" Margin="0, 0, 0, 10"></TextBox>
+
+                        <Button FontSize="15" Height="30" Click="CreateCustomerClick">Create</Button>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
